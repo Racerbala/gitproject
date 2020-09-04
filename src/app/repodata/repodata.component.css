@@ -1,0 +1,33 @@
+input[type="text"],
+select {
+  width: 60%;
+  height: 10px;
+  padding: 20px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding-left: 40px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background-image: url("https://media.istockphoto.com/vectors/magnifying-glass-or-search-vector-icon-for-graphic-design-logo-web-vector-id1163488034");
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+}
+
+.search {
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  padding-left: 30%;
+}
+.totalissue {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 50%;
+}
+.issueNum {
+  padding-left: 3%;
+}
+.nails {
+  padding-left: 15%;
+  padding-right: 15%;
+}

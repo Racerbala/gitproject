@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="search">
+        <form>
+          <input
+            type="text"
+            placeholder="    .Paste URL for Git Repo and press enter"
+            (keydown.enter)="getUrl($event)"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <p class="totalissue">Issues of <{{ userName }}></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="issueNum">
+      <div class="col-sm-2 offset-sm-2"></div>
+      <div class="col-sm-3">
+        <p>Total Issues</p>
+        <div>
+          {{ issueCount }}
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <p>Issues in last 24 hours</p>
+        <div>
+          {{ recentIssue }}
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <p>Issues older that 7 days</p>
+        <div>
+          {{ oldIssue }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <div *ngFor="let issueDatas of issueData" (click)="showFaceDetails()">
+        <div class="nails">
+          <div class="col-lg-4 col-sm-4">
+            <div class="thumbnail">
+              <h4 style="color: blue">{{ issueDatas.title }}</h4>
+              <p>issue number: {{ issueDatas.issueNumber }}</p>
+
+              <div class="row">
+                <div class="col-sm-2">
+                  <img
+                    class="rounded"
+                    src="{{ issueDatas.avatar }}"
+                    alt="avatar"
+                    style="width: 25px; height: 25px"
+                  />
+                </div>
+                <div style="color: cornflowerblue" class="col-sm-10">
+                  <p>{{ issueDatas.userName }}</p>
+                  <p>{{ dispTime }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
