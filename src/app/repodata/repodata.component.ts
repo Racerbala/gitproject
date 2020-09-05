@@ -17,11 +17,14 @@ export class RepodataComponent implements OnInit {
   oldIssue: any;
 
   issueData: any;
+  repository: any;
 
   constructor(private issueHoldService: IssueHoldService) {}
 
   getUrl(event) {
     this.inputValue = event.target.value;
+    let repoArr = this.inputValue.split('/');
+    this.repository = repoArr[repoArr.length - 1];
 
     this.issueUrl = this.inputValue.replace(
       'https://github.com',

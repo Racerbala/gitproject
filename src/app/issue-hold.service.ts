@@ -15,7 +15,6 @@ export class IssueHoldService {
   fetchIssues(data) {
     let issueData: any = [];
     this.dataUrl = data;
-    console.log('get callsed');
     return this.http.get(this.dataUrl).pipe(
       map((res: any) => {
         for (let i = 0; i < res.length; i++) {
