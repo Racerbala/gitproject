@@ -15,7 +15,6 @@ export class RepodataComponent implements OnInit {
   diffDays: any;
   recentIssue: any;
   oldIssue: any;
-  dispTime: any;
 
   issueData: any;
 
@@ -33,26 +32,16 @@ export class RepodataComponent implements OnInit {
     this.issueHoldService.fetchIssues(this.issueUrl).subscribe((res) => {
       this.issueData = res;
       this.issueCount = this.issueData.length;
-
       this.recentIssue = 0;
       this.oldIssue = 0;
       for (let i = 0; i < this.issueData.length; i++) {
-        let date1: any = new Date(this.issueData[i].timestamp);
-
-        let date2: any = new Date();
-
-        this.diffHours = Math.floor((date2 - date1) / (1000 * 60 * 60));
-        if (this.diffHours > 24) {
-          this.diffDays = Math.floor(this.diffHours / 24);
-          this.dispTime = this.diffDays + '  days ago';
-        } else {
+        if (this.issueData[i].diffHours < 25) {
           this.recentIssue = this.recentIssue + 1;
-          this.dispTime = this.diffHours + '  hours ago';
+          console.log('new');
+        } else if (this.issueData[i].diffHours > 167) {
+          this.recentIssue = this.oldIssue + 1;
+          console.log('old');
         }
-        if (this.diffDays > 7) {
-          this.oldIssue = this.oldIssue + 1;
-        }
-        console.log(this.recentIssue);
       }
     });
   }

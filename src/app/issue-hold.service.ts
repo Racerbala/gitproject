@@ -8,6 +8,9 @@ export class IssueHoldService {
   public user: string;
   dataUrl: any;
   data: any;
+  diffHours: any;
+  diffDays: any;
+  dispTime: any;
   constructor(private http: HttpClient) {}
   fetchIssues(data) {
     let issueData: any = [];
@@ -16,14 +19,29 @@ export class IssueHoldService {
     return this.http.get(this.dataUrl).pipe(
       map((res: any) => {
         for (let i = 0; i < res.length; i++) {
-          console.log('before map:', res);
+          let date1: any = new Date(res[i].created_at);
+
+          let date2: any = new Date();
+
+          this.diffHours = Math.floor((date2 - date1) / (1000 * 60 * 60));
+
+          if (this.diffHours > 24) {
+            this.diffDays = Math.floor(this.diffHours / 24);
+            this.dispTime = this.diffDays + '  days ago';
+          } else {
+            this.dispTime = this.diffHours + '  hours ago';
+          }
+
           let poppedData = {
             userName: res[i].user.login,
             avatar: res[i].user.avatar_url,
             title: res[i].title,
             issueNumber: res[i].id,
             timestamp: res[i].created_at,
+            dispTime: this.dispTime,
+            diffHours: this.diffHours,
           };
+          console.log(poppedData);
 
           issueData.push(poppedData);
         }
